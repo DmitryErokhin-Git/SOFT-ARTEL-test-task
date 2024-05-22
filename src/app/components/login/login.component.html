@@ -1,0 +1,78 @@
+<main class="col-5 flex-column m-auto">
+  <div class="login login_white">
+
+    <div class="login__form-header">
+      <img src="https://soft-artel.com/images/SADev.svg"
+           alt="Image"
+           class="login__logo">
+
+      <div class="login__text login__text_main">
+        Добро пожаловать
+      </div>
+
+      <span class="login__text login__text_description">
+           Авторизуйтесь чтобы продолжить
+      </span>
+    </div>
+
+    <form [formGroup]=loginForm (ngSubmit)="signIn()" class="login__form">
+
+      <div class="login__password">
+
+        <label for="email" class="login__input-label">Логин</label>
+        <input id="email"
+               formControlName="username"
+               type="text"
+               placeholder="admin@mail.ru"
+               class="form-control login__input"
+               [ngClass]="{
+                          'login__input_invalid' : !loginForm.controls.username.untouched && loginForm.controls.username.invalid,
+                          'login__input_valid' : !loginForm.controls.username.untouched && !loginForm.controls.username.invalid
+                          }">
+
+        <div class="login__valid-img">
+          <img *ngIf="!loginForm.controls.username.untouched || loginForm.controls.username.dirty"
+               src="{{ loginForm.controls.username.invalid ? './assets/images/Union-red.svg' : './assets/images/Tick%20Square.svg' }}">
+        </div>
+      </div>
+
+      <div class="login__password">
+
+        <label for="password1" class="login__input-label">Пароль</label>
+
+        <input [type]="show ? 'text' : 'password'"
+               id="password1"
+               type="password"
+               class="form-control login__input"
+               formControlName="password"
+               placeholder="admin"
+               [ngClass]="{
+                          'login__input_valid' : !loginForm.controls.password.untouched && !loginForm.controls.password.invalid,
+                          'login__input_invalid' : !loginForm.controls.password.untouched && loginForm.controls.password.invalid
+                          }">
+
+        <button class="login__button_password" type="button" (click)="toggleVisibility()">
+          <img src="{{show ? './assets/images/remove_red_eye.svg' : './assets/images/akar-icons_eye-closed.svg' }}">
+        </button>
+      </div>
+
+      <button class="login__button login__button_signIn" type="submit"
+              [disabled]="loginForm.controls.username.invalid || loginForm.controls.password.invalid">
+        Войти
+      </button>
+    </form>
+
+    <hr>
+
+    <button class="btn btn-secondary m-1" type="button" (click)="setData('admin')">
+      set admin@mail.ru / admin
+    </button>
+    <button class="btn btn-secondary m-1" type="button" (click)="setData('users')">
+      set users@mail.ru / users
+    </button>
+  </div>
+</main>
+
+
+
+

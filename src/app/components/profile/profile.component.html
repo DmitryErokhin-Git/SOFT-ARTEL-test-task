@@ -1,0 +1,119 @@
+<div class="loader">
+  <ngx-ui-loader [loaderId]="'master'"></ngx-ui-loader>
+</div>
+
+<main *ngIf="(user$ | async) as user" class="col-lg-4">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/']">Главная</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Профиль пользователя ID: {{ user.id }}</li>
+    </ol>
+  </nav>
+
+  <div class="modal-body">
+    <div class="avatar">
+      <img [src]="user.avatar" alt="avatar">
+    </div>
+
+    <form [formGroup]="formUser" (ngSubmit)="saveUserData()">
+<!--      <div class="mb-3">-->
+<!--        <label class="form-label" for="avatar">Аватар</label>-->
+<!--        <input aria-label="avatar"-->
+<!--               class="form-control"-->
+<!--               formControlName="avatar"-->
+<!--               id="avatar"-->
+<!--               placeholder="avatar"-->
+<!--               type="url">-->
+<!--      </div>-->
+
+<!--      <div class="mb-3">-->
+<!--        <label class="form-label" for="id">ID</label>-->
+<!--        <input aria-label="ID"-->
+<!--               class="form-control"-->
+<!--               formControlName="id"-->
+<!--               id="id"-->
+<!--               placeholder="id"-->
+<!--               type="text">-->
+<!--      </div>-->
+
+      <div class="mb-3">
+        <label class="form-label" for="name">Имя</label>
+        <input aria-label="Имя"
+               class="form-control"
+               formControlName="name"
+               id="name"
+               placeholder="name"
+               type="text">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="surname">Фамилия</label>
+        <input aria-label="Фамилия"
+               class="form-control"
+               formControlName="surname"
+               id="surname"
+               placeholder="surname"
+               type="text">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="login">Логин</label>
+        <input aria-label="Логин"
+               class="form-control"
+               formControlName="login"
+               id="login"
+               placeholder="login"
+               type="text">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="email">Email</label>
+        <input aria-label="Email"
+               class="form-control"
+               formControlName="email"
+               id="email"
+               placeholder="email"
+               type="email">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="password">Пароль</label>
+        <input aria-label="Пароль"
+               class="form-control"
+               formControlName="password"
+               id="password"
+               placeholder="password"
+               type="password">
+      </div>
+
+      <div *ngIf="(cities$ | async) as cities" class="mb-3">
+        <label class="form-label" for="city">Город</label>
+        <select aria-label="Город"
+                class="form-select"
+                formControlName="city"
+                id="city">
+          <option value="">Выберите город</option>
+          <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="date">Дата рождения</label>
+        <input aria-label="Дата рождения"
+               class="form-control"
+               formControlName="date"
+               id="date"
+               placeholder="date"
+               type="datetime-local">
+      </div>
+
+      <div class="d-grid gap-2">
+        <button [disabled]="formUser.invalid"
+                class="btn btn-warning mt-3"
+                type="submit">
+          Сохранить
+        </button>
+      </div>
+    </form>
+  </div>
+</main>

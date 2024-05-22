@@ -1,0 +1,78 @@
+<div class="loader">
+  <ngx-ui-loader [loaderId]="'master'"></ngx-ui-loader>
+</div>
+
+<main *ngIf="selectedTicket" class="col-lg-6">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/']">Главная</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Тикет №{{ selectedTicket.id }}</li>
+    </ol>
+  </nav>
+
+  <div class="card">
+    <div class="card__sticky-header">
+      <h5 class="card-header">Подробности</h5>
+    </div>
+    <div *ngIf="selectedTicket" class="card-body d-flex flex-column justify-content-between">
+      <div>
+        <!--        <form [formGroup]="formTicket">-->
+
+        <!--          <div *ngIf="STATUS_LIST" class="mb-3">-->
+        <!--            <label class="form-label" for="status">Статус</label>-->
+        <!--            <select aria-label="Статус"-->
+        <!--                    class="form-select"-->
+        <!--                    formControlName="status"-->
+        <!--                    id="status">-->
+        <!--              <option value="">Выберите статус</option>-->
+        <!--              <option *ngFor="let status of STATUS_LIST" [value]="status.key">{{ status.description }}</option>-->
+        <!--            </select>-->
+        <!--          </div>-->
+
+        <p class="card-text">Статус: <b>{{ getStatusDescription(selectedTicket.status) }}</b></p>
+
+        <!--          <div class="mb-3">-->
+        <!--            <label class="form-label" for="description">Описание</label>-->
+        <!--            <input aria-label="Описание"-->
+        <!--                   class="form-control"-->
+        <!--                   formControlName="description"-->
+        <!--                   id="description"-->
+        <!--                   placeholder="description"-->
+        <!--                   type="text">-->
+        <!--          </div>-->
+
+        <p class="card-text">Описание: <b>{{ selectedTicket.description }}</b></p>
+
+        <!--          <div class="mb-3">-->
+        <!--            <label class="form-label" for="createdDate">Дата создания</label>-->
+        <!--            <input aria-label="Дата создания"-->
+        <!--                   class="form-control"-->
+        <!--                   formControlName="createdDate"-->
+        <!--                   id="createdDate"-->
+        <!--                   placeholder="createdDate"-->
+        <!--                   type="datetime-local">-->
+        <!--          </div>-->
+
+        <p class="card-text">Дата создания: <b>{{ selectedTicket.createdDate | date: 'dd.MM.yyyy HH:mm:ss' }}</b></p>
+
+        <!--        </form>-->
+      </div>
+
+      <div class="buttons">
+        <button (click)="this.openModalWithData('edit', selectedTicket)"
+                style="width: 200px"
+                class="btn btn-warning"
+                type="button">
+          Изменить
+        </button>
+
+        <button (click)="this.openModalWithData('delete', selectedTicket)"
+                style="width: 200px"
+                class="btn btn-danger"
+                type="button">
+          Удалить
+        </button>
+      </div>
+    </div>
+  </div>
+</main>

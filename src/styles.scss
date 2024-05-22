@@ -1,0 +1,36 @@
+@import 'ngx-toastr/toastr';
+@import 'bootstrap/dist/css/bootstrap.css';
+
+.loader {
+  position: relative
+}
+
+.highlighted-text {
+  font-weight: bold;
+  color: #000000;
+  background-color: #ffc107;
+}
+
+.ngx-pagination {
+  margin: 0 !important;
+
+  a {
+    color: #fff !important;
+  }
+
+  a:hover {
+    color: #fff;
+    border: 1.5px solid #0d6efd !important;
+    border-radius: 7px;
+    background-color: #39414a !important;
+  }
+
+  .current {
+    border-radius: 7px;
+    background-color: #0d6efd !important;
+  }
+
+  .disabled {
+    color: #566978 !important;
+  }
+}

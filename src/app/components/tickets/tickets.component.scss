@@ -1,0 +1,34 @@
+:host {
+  $bar-height: 70px;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  header {
+    height: $bar-height;
+  }
+
+  main {
+    overflow-y: scroll;
+    width: 75vw;
+    height: calc(100vh - 2 * $bar-height);
+  }
+
+  aside {
+    z-index: 2;
+    overflow-y: scroll;
+    width: 25vw;
+    height: calc(100vh - $bar-height);
+  }
+
+  footer {
+    z-index: 1;
+    width: 75vw;
+    height: $bar-height;
+  }
+}
+
+
+
+

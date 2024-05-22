@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand bg-body-tertiary">
+  <div class="container-fluid d-flex justify-content-between flex-md-nowrap">
+
+    <button (click)="this.addEvent.emit({type:'add'})" class="btn btn-success btn-add" type="button">
+      Добавить
+    </button>
+
+    <form [formGroup]="formSearch" class="d-flex" role="search">
+      <input (keydown.esc)="this.clearSearch.emit()" aria-label="Поиск" autofocus
+             class="form-control me-2" formControlName="keyword"
+             id="keyword" placeholder="Поиск" type="search">
+      <button (click)="this.clearSearch.emit()" class="btn btn-outline-primary" type="button">Сбросить</button>
+    </form>
+
+    <div>
+      <button *ngIf="user" routerLink="/profile/{{user.id}}" class="btn btn-info btn-add" type="button">
+        Мой профиль
+      </button>
+
+      <button (click)="this.exitEvent.emit(true)" class="btn btn-danger" type="button">
+        Выйти
+      </button>
+    </div>
+  </div>
+</nav>

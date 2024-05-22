@@ -1,0 +1,65 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5" id="exampleModalLabel">{{titleModal}}</h1>
+    <button (click)="activeModal.close(false)" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+
+  </div>
+  <div class="modal-body">
+    <form *ngIf="data.type !== 'delete'" [formGroup]="formTicket">
+
+      <div *ngIf="STATUS_LIST" class="mb-3">
+        <label class="form-label" for="status">Статус</label>
+        <select aria-label="Статус"
+                class="form-select"
+                formControlName="status"
+                id="status">
+          <option value="">Выберите статус</option>
+          <option *ngFor="let status of STATUS_LIST" [value]="status.key">{{ status.description }}</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="description">Описание тикета</label>
+        <input aria-label="Описание тикета"
+               class="form-control"
+               formControlName="description"
+               id="description"
+               placeholder="Введите описание тикета"
+               type="text">
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="createdDate">Дата создания</label>
+        <input aria-label="Дата и время"
+               class="form-control"
+               formControlName="createdDate"
+               id="createdDate"
+               placeholder="Выберите дату"
+               type="datetime-local">
+      </div>
+    </form>
+
+    <div *ngIf="data.type === 'delete'" class="modal-body">
+      <p>{{TEXT_MODAL.delete.bodyText}}</p>
+    </div>
+
+    <div class="modal-footer">
+      <button (click)="activeModal.close(false)" class="btn btn-secondary" type="button">Закрыть</button>
+      <ng-container [ngSwitch]="data.type">
+        <ng-container *ngSwitchCase="'add'">
+          <button (click)="activeModal.close({type: data.type, ticket: formTicket.value})"
+                  [disabled]="formTicket.invalid" class="btn btn-success"
+                  type="button">{{buttonText}}</button>
+        </ng-container>
+        <ng-container *ngSwitchCase="'edit'">
+          <button (click)="activeModal.close({type: data.type, ticket: formTicket.value})"
+                  [disabled]="formTicket.invalid || areObjectsEqual(data.ticket, formTicket.value)" class="btn btn-warning"
+                  type="button">{{buttonText}}</button>
+        </ng-container>
+        <ng-container *ngSwitchCase="'delete'">
+          <button (click)="activeModal.close({type: data.type, ticket: data.ticket})" class="btn btn-danger"
+                  type="button">{{buttonText}}</button>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>

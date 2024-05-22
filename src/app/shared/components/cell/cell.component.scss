@@ -1,0 +1,18 @@
+:host {
+  .text-center {
+    display: flex;
+    justify-content: center
+  }
+
+  .text-bg-success {
+    color: #152a1c !important;
+  }
+
+  .text-bg-warning {
+    color: #422e12 !important;
+  }
+
+  .text-bg-danger {
+    color: #500f13 !important;
+  }
+}

@@ -1,0 +1,23 @@
+main {
+  margin: auto auto;
+
+  nav {
+    margin: 10px;
+  }
+
+  .avatar {
+    display: flex;
+    justify-content: center;
+
+    img {
+      padding: 10px 20px 0 20px;
+      width: 180px;
+      height: auto;
+    }
+
+  }
+
+  form {
+    padding: 10px;
+  }
+}

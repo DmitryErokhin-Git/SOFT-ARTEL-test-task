@@ -1,0 +1,41 @@
+<div class="loader">
+  <ngx-ui-loader [loaderId]="'master'"></ngx-ui-loader>
+</div>
+
+<header>
+  <page-header (addEvent)="openModalWithData($event.type)"
+               (exitEvent)="authService.signOut()"
+               (clearSearch)="clearSearch()"
+               [formSearch]="formSearch"
+               [user]="authService.authUser$ | async">
+  </page-header>
+</header>
+
+<div class="d-flex">
+  <div class="d-flex flex-column">
+    <main>
+      <tickets-table (details)="detailsTicket($event)"
+                     (openModal)="openModalWithData($event.type, $event.ticket)"
+                     [currentPage]="currentPage"
+                     [formSearch]="formSearch"
+                     [itemsPerPage]="itemsPerPage"
+                     [loading$]="dataService.loading$"
+                     [selectedRow]="selectedRow">
+      </tickets-table>
+    </main>
+
+    <footer>
+      <page-footer (pageChange)="onPageChange($event)"
+                   (setItems)="setItemsPerPage($event.number, $event.totalItems)"
+                   [quantityMessages]="(dataService.tableData$ | async)?.length || 0">
+      </page-footer>
+    </footer>
+  </div>
+
+  <aside>
+    <ticket-details [selectedRow]="selectedRow">
+    </ticket-details>
+  </aside>
+</div>
+
+

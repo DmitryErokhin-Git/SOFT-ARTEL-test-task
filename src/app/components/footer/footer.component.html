@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand bg-body-tertiary">
+  <div class="container-fluid d-flex justify-content-between align-items-center flex-md-nowrap ">
+    <div><span>Тикетов: {{ quantityMessages }}</span></div>
+
+    <div id="footerNavContent">
+      <pagination-template #p="paginationApi">
+        <pagination-controls
+          (pageChange)="this.pageChange.emit($event)"
+          previousLabel="Назад"
+          nextLabel="Вперёд">
+        </pagination-controls>
+      </pagination-template>
+    </div>
+
+    <div aria-label="Basic radio toggle button group" class="btn-group" role="group">
+      <input (click)="this.setItems.emit({number:5, totalItems: p.getTotalItems()})"
+             autocomplete="off"
+             class="btn-check"
+             id="btnradio1"
+             name="btnradio"
+             type="radio">
+      <label class="btn btn-outline-primary" for="btnradio1">5</label>
+
+      <input (click)="this.setItems.emit({number:10, totalItems: p.getTotalItems()})"
+             autocomplete="off"
+             checked
+             class="btn-check"
+             id="btnradio2"
+             name="btnradio"
+             type="radio">
+      <label class="btn btn-outline-primary" for="btnradio2">10</label>
+
+      <input (click)="this.setItems.emit({number:20, totalItems: p.getTotalItems()})"
+             autocomplete="off"
+             class="btn-check"
+             id="btnradio3"
+             name="btnradio"
+             type="radio">
+      <label class="btn btn-outline-primary" for="btnradio3">20</label>
+    </div>
+  </div>
+</nav>

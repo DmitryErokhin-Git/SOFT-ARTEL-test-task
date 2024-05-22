@@ -1,0 +1,21 @@
+<ng-container [ngSwitch]="field">
+  <ng-container *ngSwitchCase="'id'">
+    <div [innerHTML]="ticket.id.toString() | highlighter: keyword" class="text-center"></div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'status'">
+    <div [innerHTML]="getStatusDescription(ticket.status)" class="badge text-center"
+         [ngClass]="{
+         'text-bg-success': ticket.status == 'closed',
+         'text-bg-warning': ticket.status == 'pending',
+         'text-bg-danger': ticket.status == 'open',
+         }">
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'createdDate'">
+    <div [innerHTML]="ticket.createdDate | date: 'dd.MM.yyyy HH:mm:ss' | highlighter: keyword"
+         class="text-center"></div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'description'">
+    <div [innerHTML]="ticket.description | truncate: LIMIT_CHARACTERS | highlighter: keyword"></div>
+  </ng-container>
+</ng-container>

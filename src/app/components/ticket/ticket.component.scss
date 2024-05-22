@@ -1,0 +1,41 @@
+:host {
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  main {
+    margin: auto auto;
+
+    nav {
+      margin: 10px;
+    }
+
+    .card {
+      margin: 10px;
+      --bs-card-spacer-x: 0;
+
+      .card-body {
+        padding: 10px;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      button {
+        max-width: 50%;
+        margin: 20px 10px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 840px) {
+
+    button {
+      width: 10%;
+      margin: 0;
+    }
+  }
+}

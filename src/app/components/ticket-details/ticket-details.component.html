@@ -1,0 +1,19 @@
+<div class="card ">
+  <div class="card__sticky-header">
+    <h5 class="card-header">Подробности</h5>
+  </div>
+  <h5 *ngIf="!selectedRow" class="card-title m-3">Выберете тикет</h5>
+  <div *ngIf="selectedRow" class="card-body d-flex flex-column justify-content-between">
+    <div>
+      <h5 class="card-title">{{getStatusDescription(selectedRow.status)}}</h5>
+      <p class="card-text">{{selectedRow.createdDate | date: 'dd.MM.yyyy HH:mm:ss' }}</p>
+      <p class="card-text">{{selectedRow.description}}</p>
+    </div>
+    <div>
+      <button (click)="goToTicket()" class="btn btn-primary"
+              type="button">
+        Подробнее
+      </button>
+    </div>
+  </div>
+</div>
